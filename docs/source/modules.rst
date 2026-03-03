@@ -1,7 +1,7 @@
 Modules de l'application
 ========================
 
-.. automodule:: app.modules.mon_module
+.. automodule:: app.modules.math
    :members:
    :undoc-members:
    :show-inheritance:
