@@ -10,3 +10,4 @@ def test_main_output(capsys):
 
     # On vérifie que le message attendu est bien présent
     assert "Hello from sphinx-markdown!" in captured.out
+
