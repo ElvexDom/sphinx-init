@@ -1,0 +1,52 @@
+# --- Dossiers de dépendances (Le plus important) ---
+.venv/
+venv/
+ENV/
+.pixi/
+__pypackages__/
+.pdm-python
+.pdm-build/
+
+# --- Cache et Python (Évite les bugs d'exécution) ---
+__pycache__/
+*.py[codz]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.pytype/
+
+# --- Documentation Sphinx (À exclure car déjà build ou inutile en prod) ---
+docs/_build/
+docs/build/
+docs/source/_static/coverage/
+
+# --- Rapports de tests et couverture ---
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+
+# --- Git et IDE (Inutile dans l'image finale) ---
+.git/
+.gitignore
+.vscode/
+.idea/
+.spyderproject
+.ropeproject
+.cursorignore
+.cursorindexingignore
+
+# --- Fichiers système et logs ---
+*.log
+.env
+.envrc
+*.bak
+.DS_Store
