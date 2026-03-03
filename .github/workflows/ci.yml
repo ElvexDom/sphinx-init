@@ -1,0 +1,51 @@
+name: CI Quality Check
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      # Indispensable pour que l'action puisse créer la branche du badge
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5 # v5 est la version la plus stable
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Lint with Ruff
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Run Tests with Pytest
+        # On force la sortie XML pour que l'action de coverage puisse la lire
+        run: uv run pytest --cov=src tests/ --cov-report=xml
+
+      - name: Coverage comment
+        id: coverage_comment
+        uses: py-cov-action/python-coverage-comment-action@v3
+        with:
+          GITHUB_TOKEN: ${{ github.token }}
+          # On définit la branche de référence dynamiquement
+          FINAL_TARGET_BRANCH: ${{ github.ref_name }} 
+
+      - name: Store Pull Request comment
+        uses: actions/upload-artifact@v4
+        if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
+        with:
+          name: python-coverage-comment-action
+          path: python-coverage-comment-action.txt
