@@ -4,10 +4,10 @@
 
 | Name                        |    Stmts |     Miss |   Cover |   Missing |
 |---------------------------- | -------: | -------: | ------: | --------: |
-| app/main.py                 |        4 |        4 |      0% |      1-11 |
+| app/main.py                 |        4 |        1 |     75% |        11 |
 | app/modules/\_\_init\_\_.py |        0 |        0 |    100% |           |
 | app/modules/math.py         |        4 |        0 |    100% |           |
-| **TOTAL**                   |    **8** |    **4** | **50%** |           |
+| **TOTAL**                   |    **8** |    **1** | **88%** |           |
 
 
 ## Setup coverage badge
