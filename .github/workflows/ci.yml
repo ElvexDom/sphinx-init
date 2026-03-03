@@ -10,7 +10,6 @@ jobs:
   test-and-lint:
     runs-on: ubuntu-latest
     permissions:
-      # Autorise le token automatique à écrire sur le dépôt
       contents: write
       pull-requests: write
     
@@ -32,19 +31,18 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        # On cible le dossier 'app' et on génère le rapport XML
-        run: uv run pytest --cov=app --cov-report=xml:coverage.xml
+        # On génère le fichier .coverage standard (binaire) ET le XML pour être sûr
+        run: uv run pytest --cov=app --cov-report=xml
         env:
+          # IMPORTANT : On force les chemins relatifs pour que l'action Docker puisse lire le fichier
           COVERAGE_RUN_RELATIVE_FILES: True
 
       - name: Coverage comment
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
-          # On utilise le secret automatique de GitHub
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # On donne le fichier XML généré
-          COVERAGE_PATH: coverage.xml
+          # ON NE MET PAS COVERAGE_PATH ici pour laisser l'action trouver le fichier .coverage toute seule
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
       - name: Store Pull Request comment
