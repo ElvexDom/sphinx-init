@@ -10,7 +10,6 @@ jobs:
   test-and-lint:
     runs-on: ubuntu-latest
     permissions:
-      # Indispensable pour que l'action puisse créer la branche du badge et commenter la PR
       contents: write
       pull-requests: write
     
@@ -32,8 +31,10 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        # On génère le coverage.xml et on force les chemins relatifs
-        run: uv run pytest --cov=src tests/ --cov-report=xml
+        # On force la création du fichier coverage.xml à la racine
+        run: |
+          uv run pytest --cov=src tests/ --cov-report=xml:coverage.xml
+          ls -la coverage.xml
         env:
           COVERAGE_RUN_RELATIVE_FILES: True
 
@@ -42,9 +43,8 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          # On pointe explicitement sur le XML pour éviter les erreurs de chemins absolus
+          # On cible le fichier que l'on vient de forcer ci-dessus
           COVERAGE_PATH: ./coverage.xml
-          # On crée une branche de données spécifique à la branche en cours
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
       - name: Store Pull Request comment
