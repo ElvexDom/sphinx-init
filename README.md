@@ -1,7 +1,7 @@
 # 🚀 Sphinx Project
 
-![CI Status](https://img.shields.io/badge/CI-passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-100%25-success)
+[![CI Status](https://github.com/ElvexDom/sphinx-init/actions/workflows/ci.yml/badge.svg)](https://github.com/ElvexDom/sphinx-init/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ElvexDom/sphinx-init/python-coverage-comment-action-data/endpoint.json)](https://github.com/ElvexDom/sphinx-init/tree/python-coverage-comment-action-data)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 Bienvenue dans le projet. Cette boîte à outils Python est conçue avec une exigence d'excellence technique.
