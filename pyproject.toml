@@ -36,3 +36,10 @@ ignore = [
 testpaths = ["tests"]
 python_files = "test_*.py"
 addopts = "-v --cov=app --cov-report=term-missing"
+
+[tool.coverage.run]
+relative_files = true
+source = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=xml"

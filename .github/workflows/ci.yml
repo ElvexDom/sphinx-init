@@ -31,14 +31,16 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        run: uv run pytest --cov=src tests/ --cov-report=xml
+        # On ajoute l'option pour les chemins relatifs directement ici
+        run: uv run pytest --cov=src tests/ --cov-report=xml -o "tool.coverage.run.relative_files=True"
 
       - name: Coverage comment
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          FINAL_TARGET_BRANCH: ${{ github.ref_name }} 
+          # On remplace FINAL_TARGET_BRANCH par COVERAGE_DATA_BRANCH pour éviter le warning
+          COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
       - name: Store Pull Request comment
         uses: actions/upload-artifact@v4
