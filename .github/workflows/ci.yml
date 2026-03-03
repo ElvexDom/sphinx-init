@@ -44,6 +44,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # On force un nom de branche fixe pour ne pas s'y perdre
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data
+          FORCE_DATA_BRANCH_UPDATE: true
+
 
       - name: Store Pull Request comment
         uses: actions/upload-artifact@v4
