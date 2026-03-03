@@ -42,7 +42,6 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # On force un nom de branche fixe pour ne pas s'y perdre
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data
           FORCE_DATA_BRANCH_UPDATE: true
 
