@@ -1,6 +1,8 @@
-import pytest
 import pandas as pd
+import pytest
+
 from app.modules.math import add, multiply
+
 
 # --- 1. PARAMÉTRISATION ---
 # On teste 4 scénarios d'un coup (positifs, nuls, négatifs)
@@ -27,8 +29,8 @@ def mock_dataframe():
     return pd.DataFrame(data)
 
 def test_process_data_logic(mock_dataframe):
-    """
-    Exemple de test utilisant la fixture.
+    """Exemple de test utilisant la fixture.
+
     On imagine que ton module a une fonction qui compte les lignes.
     """
     # Ici, on teste la logique de traitement, pas la lecture du fichier
