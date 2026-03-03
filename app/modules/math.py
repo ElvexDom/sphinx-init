@@ -4,6 +4,7 @@ Ce module fournit des outils simples pour démontrer l'utilisation
 de Ruff, Pytest et Sphinx.
 """
 
+
 def add(a: int, b: int) -> int:
     """Additionne deux nombres entiers.
 
@@ -20,6 +21,7 @@ def add(a: int, b: int) -> int:
 
     """
     return a + b
+
 
 def multiply(a: int, b: int) -> int:
     """Multiplie deux nombres entiers.
