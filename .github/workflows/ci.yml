@@ -31,10 +31,9 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        # On force la création du fichier coverage.xml à la racine
+        # Changement ici : on utilise --cov=app (ou . si tu as un doute)
         run: |
-          uv run pytest --cov=src tests/ --cov-report=xml:coverage.xml
-          ls -la coverage.xml
+          uv run pytest --cov=app --cov-report=xml:coverage.xml
         env:
           COVERAGE_RUN_RELATIVE_FILES: True
 
@@ -43,7 +42,6 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          # On cible le fichier que l'on vient de forcer ci-dessus
           COVERAGE_PATH: ./coverage.xml
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
