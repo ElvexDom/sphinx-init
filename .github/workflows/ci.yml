@@ -10,6 +10,7 @@ jobs:
   test-and-lint:
     runs-on: ubuntu-latest
     permissions:
+      # Indispensable pour la création de la branche de données et le commentaire PR
       contents: write
       pull-requests: write
     
@@ -31,9 +32,8 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        # Changement ici : on utilise --cov=app (ou . si tu as un doute)
-        run: |
-          uv run pytest --cov=app --cov-report=xml:coverage.xml
+        # On génère le fichier XML dans le répertoire courant
+        run: uv run pytest --cov=app --cov-report=xml:coverage.xml
         env:
           COVERAGE_RUN_RELATIVE_FILES: True
 
@@ -42,7 +42,8 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          COVERAGE_PATH: ./coverage.xml
+          # On indique le fichier sans le préfixe ./ pour éviter les erreurs de type "NotADirectory"
+          COVERAGE_PATH: coverage.xml
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
       - name: Store Pull Request comment
