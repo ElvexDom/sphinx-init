@@ -10,7 +10,7 @@ jobs:
   test-and-lint:
     runs-on: ubuntu-latest
     permissions:
-      # Indispensable pour la création de la branche de données et le commentaire PR
+      # Autorise le token automatique à écrire sur le dépôt
       contents: write
       pull-requests: write
     
@@ -32,7 +32,7 @@ jobs:
           uv run ruff format --check .
 
       - name: Run Tests with Pytest
-        # On génère le fichier XML dans le répertoire courant
+        # On cible le dossier 'app' et on génère le rapport XML
         run: uv run pytest --cov=app --cov-report=xml:coverage.xml
         env:
           COVERAGE_RUN_RELATIVE_FILES: True
@@ -41,8 +41,9 @@ jobs:
         id: coverage_comment
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
-          GITHUB_TOKEN: ${{ github.token }}
-          # On indique le fichier sans le préfixe ./ pour éviter les erreurs de type "NotADirectory"
+          # On utilise le secret automatique de GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # On donne le fichier XML généré
           COVERAGE_PATH: coverage.xml
           COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
 
