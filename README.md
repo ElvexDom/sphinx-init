@@ -47,7 +47,7 @@ uv run ruff check .
 
 Tests :
 ```bash
-uv run pytest
+uv run pytest --cov=app --cov-report=html:docs/source/_static/coverage tests/
 ```
 
 Génération Doc :

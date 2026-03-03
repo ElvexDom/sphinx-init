@@ -20,3 +20,4 @@ les spécifications techniques, l'architecture et l'API de référence.
    :caption: 📈 Annexes:
 
    tests
+   coverage

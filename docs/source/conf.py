@@ -26,3 +26,9 @@ html_theme = "sphinx_rtd_theme"
 html_logo = "_static/img/logo.png"
 html_title = "Documentation - Sphinx - UV"
 html_static_path = ['_static']
+
+# Empêche MyST de valider les liens vers des fichiers externes/générés
+myst_all_links_external = False
+
+# Supprimer l'avertissement spécifique pour le dossier coverage
+suppress_warnings = ["myst.xref_missing"]
