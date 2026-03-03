@@ -42,8 +42,8 @@ jobs:
         uses: py-cov-action/python-coverage-comment-action@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # ON NE MET PAS COVERAGE_PATH ici pour laisser l'action trouver le fichier .coverage toute seule
-          COVERAGE_DATA_BRANCH: python-coverage-comment-action-data-${{ github.ref_name }}
+          # On force un nom de branche fixe pour ne pas s'y perdre
+          COVERAGE_DATA_BRANCH: python-coverage-comment-action-data
 
       - name: Store Pull Request comment
         uses: actions/upload-artifact@v4
