@@ -2,12 +2,11 @@
 
 [Full report](https://htmlpreview.github.io/?https://github.com/ElvexDom/sphinx-init/blob/python-coverage-comment-action-data/htmlcov/index.html)
 
-| Name                        |    Stmts |     Miss |   Cover |   Missing |
-|---------------------------- | -------: | -------: | ------: | --------: |
-| app/main.py                 |        4 |        1 |     75% |        11 |
-| app/modules/\_\_init\_\_.py |        0 |        0 |    100% |           |
-| app/modules/math.py         |        4 |        0 |    100% |           |
-| **TOTAL**                   |    **8** |    **1** | **88%** |           |
+| Name                        |    Stmts |     Miss |    Cover |   Missing |
+|---------------------------- | -------: | -------: | -------: | --------: |
+| app/modules/\_\_init\_\_.py |        0 |        0 |     100% |           |
+| app/modules/math.py         |        4 |        0 |     100% |           |
+| **TOTAL**                   |    **4** |    **0** | **100%** |           |
 
 
 ## Setup coverage badge
